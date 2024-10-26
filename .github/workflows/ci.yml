@@ -30,6 +30,11 @@ jobs:
           host: 'windows'
           target: 'desktop'
           arch: 'win64_msvc2022_64'
+          modules: 'qtserialport'
+
+      - name: Check for Qt6SerialPort
+        run: dir D:/a/tests/Qt/6.8.0/msvc2022_64/lib/cmake/Qt6SerialPort
+
 
       - name: Clean build directory
         run: |
