@@ -35,16 +35,18 @@ jobs:
       - name: Check for Qt6SerialPort
         run: dir D:/a/tests/Qt/6.8.0/msvc2022_64/lib/cmake/Qt6SerialPort
 
-      - name: Clean build directory
-        run: |
-          Remove-Item -Recurse -Force client/build
-    
+      # Create build directory and configure CMake
       - name: Configure CMake
-        run: cmake client -B client/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
-    
+        run: |
+          if (Test-Path client/build) {
+            Remove-Item -Recurse -Force client/build
+          }
+          New-Item -ItemType Directory -Path client/build
+          cmake -S client -B client/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DQT_DEBUG_FIND_PACKAGE=ON
+
       - name: Build
-        run: cmake --build client/build
-    
+        run: cmake --build client/build --config ${{ env.BUILD_TYPE }}
+
       - name: Test
         working-directory: client/build
         run: ctest -C ${{ env.BUILD_TYPE }} --output-on-failure --rerun-failed
@@ -68,6 +70,7 @@ jobs:
       - name: Install PlatformIO
         run: |
           python3 -m pip install -U platformio
+
       # Build PlatformIO project for Arduino Server
       - name: Build Arduino Project
         run: |
