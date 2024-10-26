@@ -1,6 +1,0 @@
-set(__QT_DEPLOY_TARGET_client_FILE C:/Users/vasil/Documents/test_git_task2/tests/client/build/Debug/client.exe)
-set(__QT_DEPLOY_TARGET_client_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_client_RUNTIME_DLLS C:/Qt/6.8.0/mingw_64/bin/Qt6Widgets.dll;C:/Qt/6.8.0/mingw_64/bin/Qt6SerialPort.dll;C:/Qt/6.8.0/mingw_64/bin/Qt6Gui.dll;C:/Qt/6.8.0/mingw_64/bin/Qt6Core.dll)
-set(__QT_DEPLOY_TARGET_client_tester_FILE C:/Users/vasil/Documents/test_git_task2/tests/client/build/Debug/client_tester.exe)
-set(__QT_DEPLOY_TARGET_client_tester_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_client_tester_RUNTIME_DLLS C:/Qt/6.8.0/mingw_64/bin/Qt6Widgets.dll;C:/Qt/6.8.0/mingw_64/bin/Qt6SerialPort.dll;C:/Qt/6.8.0/mingw_64/bin/Qt6Test.dll;C:/Qt/6.8.0/mingw_64/bin/Qt6Gui.dll;C:/Qt/6.8.0/mingw_64/bin/Qt6Core.dll)
