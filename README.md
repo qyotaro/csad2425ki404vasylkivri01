@@ -13,20 +13,8 @@ The primary objective of this task is to set up a repository where the default b
 
 ## Details about the technology, programming language and hardware
 
-### Hardware
-- **Arduino Uno.**
-A microcontroller board used for the hardware aspect of the project. The Arduino will handle the core game logic, such as determining the winner and managing game states. 
+- The server part must run on hardware, while the software part is used as a client.
+- **Programming Languages:** C++/Qt.
+- **Hardware:** Arduino Uno Rev3 (ch340) will be used for the server side.
+- **Software:** PlatformIO and QT Creator.
 
-### Software
-- **QT Creator.**
-GUI Development.
-- **Platformio.**
-To develop and upload the logic code onto the Arduino Uno, mainly employing C/C++ for low-level management.
-
-### Programming Languages
-- **C/C++.**
-Development of game logic and graphical interface.
-
-### Communication
-- **Serial Communication.** 
-The Arduino will communicate with the Python application through a UART serial port to send and receive game data and inputs.

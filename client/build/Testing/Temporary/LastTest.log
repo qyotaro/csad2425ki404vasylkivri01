@@ -1,0 +1,19 @@
+Start testing: Oct 26 20:55 Фінляндія (літо)
+----------------------------------------------------------
+Test not available in configuration "SerialCommunicationTests".
+1/1 Testing: SerialCommunicationTests
+1/1 Test: SerialCommunicationTests
+Command: "NOT_AVAILABLE"
+Directory: C:/Users/vasil/Documents/test_git_task2/tests/client/build
+"SerialCommunicationTests" start time: 
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"SerialCommunicationTests" end time: Oct 26 20:55 Фінляндія (літо)
+"SerialCommunicationTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 26 20:55 Фінляндія (літо)

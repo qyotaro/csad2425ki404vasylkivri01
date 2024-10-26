@@ -1,0 +1,7 @@
+C:/Users/vasil/Documents/test_git_task2/tests/client/build/CMakeFiles/client.dir
+C:/Users/vasil/Documents/test_git_task2/tests/client/build/CMakeFiles/client_tester.dir
+C:/Users/vasil/Documents/test_git_task2/tests/client/build/CMakeFiles/test.dir
+C:/Users/vasil/Documents/test_git_task2/tests/client/build/CMakeFiles/edit_cache.dir
+C:/Users/vasil/Documents/test_git_task2/tests/client/build/CMakeFiles/rebuild_cache.dir
+C:/Users/vasil/Documents/test_git_task2/tests/client/build/CMakeFiles/client_autogen.dir
+C:/Users/vasil/Documents/test_git_task2/tests/client/build/CMakeFiles/client_tester_autogen.dir
