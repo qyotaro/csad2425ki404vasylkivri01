@@ -68,7 +68,6 @@ jobs:
       - name: Install PlatformIO
         run: |
           python3 -m pip install -U platformio
-
       # Build PlatformIO project for Arduino Server
       - name: Build Arduino Project
         run: |
@@ -81,4 +80,3 @@ jobs:
         with:
           name: arduino-binaries
           path: server/.pio/build/*
-
