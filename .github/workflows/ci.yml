@@ -35,7 +35,6 @@ jobs:
       - name: Check for Qt6SerialPort
         run: dir D:/a/tests/Qt/6.8.0/msvc2022_64/lib/cmake/Qt6SerialPort
 
-
       - name: Clean build directory
         run: |
           Remove-Item -Recurse -Force client/build
@@ -48,7 +47,7 @@ jobs:
     
       - name: Test
         working-directory: client/build
-        run: ctest -C ${{ env.BUILD_TYPE }}
+        run: ctest -C ${{ env.BUILD_TYPE }} --output-on-failure --rerun-failed
 
       # Step 6: Upload build artifacts
       - name: Upload Client Build Artifacts
