@@ -14,7 +14,6 @@ find_package(Qt6 COMPONENTS Core Gui Widgets SerialPort Test REQUIRED)
 #    add_compile_options(/Zc:__cplusplus)
 #endif()
 
-# Set source files
 set(SOURCE_FILES
     main.cpp
     mainwindow.cpp
@@ -25,7 +24,7 @@ set(HEADER_FILES
     mainwindow.h
     serialcommunication.h
 )
-# Додайте файл .ui
+
 set(UI_FILES
     mainwindow.ui
 )
