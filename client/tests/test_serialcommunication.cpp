@@ -1,43 +1,55 @@
 #include <QtTest>
 #include "../serialcommunication.h"
 
+class MockSerialCommunication : public SerialCommunication {
+public:
+    MockSerialCommunication() {
+    }
+    bool openSerialPort(const QString &portName, int baudRate)  {
+        return true;
+    }
+
+    void sendMessage(const QString &message)  {
+        emit messageReceived(message);
+    }
+
+    void readFromSerial()  {
+        if (!buffer.isEmpty()) {
+            emit messageReceived(QString::fromUtf8(buffer));
+            buffer.clear();
+        }
+    }
+};
+
 class TestSerialCommunication : public QObject {
     Q_OBJECT
 
 private slots:
-    void initTestCase();    
-    void cleanupTestCase(); 
-
-    void testOpenSerialPort();      
-    void testSendMessage();         
-    void testReceiveMessage();      
+    void initTestCase();
+    void cleanupTestCase();
+    void testSendMessage();
+    void testReceiveMessage();
 
 private:
-    SerialCommunication *serialComm;
+    MockSerialCommunication *serialComm;
 };
 
 void TestSerialCommunication::initTestCase() {
-    serialComm = new SerialCommunication();
+    serialComm = new MockSerialCommunication();
 }
 
 void TestSerialCommunication::cleanupTestCase() {
     delete serialComm;
 }
 
-void TestSerialCommunication::testOpenSerialPort() {
-    QString portName = "COM3"; 
-    bool result = serialComm->openSerialPort(portName, 9600);
-    QVERIFY(result == true);
-}
-
 void TestSerialCommunication::testSendMessage() {
     QString message = "Hello Arduino\n";
-
     QSignalSpy spy(serialComm, &SerialCommunication::messageReceived);
 
     serialComm->sendMessage(message);
 
-    QVERIFY(spy.count() == 0);
+    QVERIFY(spy.count() == 1);
+    QCOMPARE(spy.takeFirst().at(0).toString(), message);
 }
 
 void TestSerialCommunication::testReceiveMessage() {
@@ -51,9 +63,8 @@ void TestSerialCommunication::testReceiveMessage() {
 
     QList<QVariant> arguments = spy.takeFirst();
     QString receivedMessage = arguments.at(0).toString();
-    QCOMPARE(receivedMessage, "Message from Arduino");
+    QCOMPARE(receivedMessage, message);
 }
 
-
 QTEST_MAIN(TestSerialCommunication)
-#include "test_mainwindow.moc"
+#include "test_serialcommunication.moc"

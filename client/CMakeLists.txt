@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)  
+cmake_minimum_required(VERSION 3.16)  
 
 project(client_project LANGUAGES CXX)
 
@@ -9,6 +9,10 @@ set(CMAKE_AUTOUIC ON)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 find_package(Qt6 COMPONENTS Core Gui Widgets SerialPort Test REQUIRED)
+
+#if(MSVC)
+#    add_compile_options(/Zc:__cplusplus)
+#endif()
 
 # Set source files
 set(SOURCE_FILES
@@ -33,7 +37,7 @@ add_executable(client ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES})
 target_link_libraries(client Qt6::Core Qt6::Gui Qt6::Widgets Qt6::SerialPort)
 
 add_executable(client_tester
-    tests/test_mainwindow.cpp
+    tests/test_serialcommunication.cpp
     serialcommunication.cpp
 )
 
@@ -42,11 +46,7 @@ target_link_libraries(client_tester Qt6::Core Qt6::Gui Qt6::Widgets Qt6::SerialP
 set_target_properties(client PROPERTIES AUTOMOC ON)
 set_target_properties(client_tester PROPERTIES AUTOMOC ON)
 
-# Add MSVC compile option for C++17
-#if(MSVC)
- #   add_compile_options(/Zc:__cplusplus)
-#endif()
 
 enable_testing()
 
-add_test(NAME SerialCommunicationTests COMMAND client_tester)
+add_test(NAME TestSerialCommunication COMMAND client_tester)

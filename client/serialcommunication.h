@@ -4,7 +4,8 @@
 #include <QObject>
 #include <QSerialPort>
 
-class TestSerialCommunication; 
+class MockSerialCommunication;
+class TestSerialCommunication;
 
 class SerialCommunication : public QObject {
     Q_OBJECT
@@ -26,7 +27,7 @@ private:
     QSerialPort *serial;
     QByteArray buffer;
 
-
+    friend class MockSerialCommunication;
     friend class TestSerialCommunication;
 };
 

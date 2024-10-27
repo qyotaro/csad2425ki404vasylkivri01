@@ -18,3 +18,4 @@ The primary objective of this task is to set up a repository where the default b
 - **Hardware:** Arduino Uno Rev3 (ch340) will be used for the server side.
 - **Software:** PlatformIO and QT Creator.
 
+## How to build and run project
