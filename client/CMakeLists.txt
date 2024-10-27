@@ -7,12 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
+include(${CMAKE_SOURCE_DIR}/cmake/windeployqt.cmake)
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 find_package(Qt6 COMPONENTS Core Gui Widgets SerialPort Test REQUIRED)
 
-#if(MSVC)
-#    add_compile_options(/Zc:__cplusplus)
-#endif()
 
 set(SOURCE_FILES
     main.cpp
@@ -45,6 +44,7 @@ target_link_libraries(client_tester Qt6::Core Qt6::Gui Qt6::Widgets Qt6::SerialP
 set_target_properties(client PROPERTIES AUTOMOC ON)
 set_target_properties(client_tester PROPERTIES AUTOMOC ON)
 
+windeployqt(client)
 
 enable_testing()
 
