@@ -1,0 +1,69 @@
+name: CI Qt CMake (Windows) and PlatformIO
+
+on:
+  push:
+    branches:
+     - '*'
+  pull_request:
+    branches:
+     - '*'
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  build-client:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==3.1.*'
+          version: '6.8.0'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2022_64'
+          modules: 'qtserialport'
+
+      - name: Configure CMake
+        run: cmake ${{github.workspace}}/client -B ${{github.workspace}}/client/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/client/build
+
+      - name: Test
+        working-directory: ${{github.workspace}}/client/build
+        run: ctest -C ${{env.BUILD_TYPE}} --rerun-failed --output-on-failure
+
+      - name: Upload Client build artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-build-windows
+          path: ${{github.workspace}}/client/build
+          
+  build-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install PlatformIO
+        run: |
+          python3 -m pip install -U platformio
+
+      - name: Build Arduino Project
+        run: |
+          pio run
+        working-directory: server
+
+      - name: Upload Server build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-build
+          path: server/.pio/build/*
